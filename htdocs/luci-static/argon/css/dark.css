@@ -794,7 +794,8 @@ select,
 
         background: linear-gradient(90deg, hsla(237, 100%, 26%, 1) 0 40px, rgb(4, 117, 247) 99% 100%);
 
-        background: -moz-linear-gradient(90deg, hsla(237, 100%, 26%, 1) 0 40px, rgb(4, 117, 247) 99% 100%) background: -webkit-linear-gradient(90deg, hsla(237, 100%, 26%, 1) 0 40px, rgb(4, 117, 247) 99% 100%);
+        background: -moz-linear-gradient(90deg, hsla(237, 100%, 26%, 1) 0 40px, rgb(4, 117, 247) 99% 100%);
+        background: -webkit-linear-gradient(90deg, hsla(237, 100%, 26%, 1) 0 40px, rgb(4, 117, 247) 99% 100%);
         /* background: hsla(224, 86%, 57%, 1);
 
 background: linear-gradient(0deg, hsla(224, 86%, 57%, 1) 0%, hsla(183, 100%, 47%, 1) 50%, hsla(224, 86%, 57%, 1) 100%);
