@@ -1,4 +1,4 @@
-<%#
+<%#place on: / usr / lib / lua / luci / view / themes / argon 
 	Argon is a clean HTML5 theme for LuCI. It is based on luci-theme-material Argon Template
 
 	luci-theme-argon
@@ -40,15 +40,20 @@
 	local mode = 'normal'
 	local dark_css = fs.readfile('/www/luci-static/argon/css/dark.css')
 	local bar_color = '#5e72e4'
-	local primary, dark_primary, blur_radius, blur_radius_dark, blur_opacity
+	local primary, gradient_start, gradient_end, dark_primary, dark_gradient_start, dark_gradient_end, blur_radius, blur_radius_dark, blur_opacity, color_backgroud
 	if fs.access('/etc/config/argon') then
 		primary = uci:get_first('argon', 'global', 'primary')
+		gradient_start=uci:get_first('argon', 'global', 'gradient_start')
+        gradient_end=uci:get_first('argon', 'global', 'gradient_end')
 		dark_primary = uci:get_first('argon', 'global', 'dark_primary')
+        dark_gradient_start=uci:get_first('argon', 'global', 'dark_gradient_start')
+        dark_gradient_end=uci:get_first('argon', 'global', 'dark_gradient_end')
 		blur_radius = uci:get_first('argon', 'global', 'blur')
 		blur_radius_dark = uci:get_first('argon', 'global', 'blur_dark')
 		blur_opacity = uci:get_first('argon', 'global', 'transparency')
 		blur_opacity_dark = uci:get_first('argon', 'global', 'transparency_dark')
 		mode = uci:get_first('argon', 'global', 'mode')
+		background_color=uci:get_first('argon', 'global', 'background_color') 
 		bar_color = mode == 'dark' and dark_primary or primary
 	end
 -%>
@@ -95,7 +100,11 @@
 		<% if fs.access('/etc/config/argon') then %>
 		:root {
 			--primary: <%=primary%>;
+			--gradient-start: <%=gradient_start%>;
+			--gradient-end: <%=gradient_end%>;
 			--dark-primary: <%=dark_primary%>;
+			--dark-gradient-start: <%=dark_gradient_start%>;
+			--dark-gradient-end: <%=dark_gradient_end%>;
 			--blur-radius:<%=blur_radius%>px;
 			--blur-opacity:<%=blur_opacity%>;
 			--blur-radius-dark:<%=blur_radius_dark%>px;
