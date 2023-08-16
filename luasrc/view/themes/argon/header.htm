@@ -39,6 +39,7 @@
 	-- Custom settings
 	local mode = 'normal'
 	local dark_css = fs.readfile('/www/luci-static/argon/css/dark.css')
+	local custom_css = fs.readfile('/www/luci-static/argon/css/custom.css')
 	local bar_color = '#5e72e4'
 	local primary,  gradient_start, gradient_end, dark_primary, dark_gradient_start, dark_gradient_end, blur_radius, blur_radius_dark, blur_opacity, backgroud_color
 	if fs.access('/etc/config/argon') then
@@ -47,7 +48,7 @@
 		gradient_end=uci:get_first('argon', 'global' , 'gradient_end')
 		dark_primary = uci:get_first('argon', 'global', 'dark_primary')
 		dark_gradient_start=uci:get_first('argon', 'global' , 'dark_gradient_start')
-        dark_gradient_end=uci:get_first('argon', 'global' , 'dark_gradient_end') 
+                dark_gradient_end=uci:get_first('argon', 'global' , 'dark_gradient_end') 
 		blur_radius = uci:get_first('argon', 'global', 'blur')
 		blur_radius_dark = uci:get_first('argon', 'global', 'blur_dark')
 		blur_opacity = uci:get_first('argon', 'global', 'transparency')
@@ -58,6 +59,7 @@
 
 	-- Brand name
 	local brand_name = boardinfo.hostname or "?"
+	--local brand_name = mode or "?"
 -%>
 <!DOCTYPE html>
 <html lang="<%=luci.i18n.context.lang%>">
@@ -94,42 +96,84 @@
 	<style title="text/css">
 		<% if mode ~= 'dark' then %>
 			@media (prefers-color-scheme: dark) {
-				<%=dark_css%>
+				
 			}
-		<% if fs.access('/etc/config/argon') then %>
-		:root {
-			--primary: <%=primary%>;
-			--gradient-start: <%=gradient_start%>;
-			--gradient-end: <%=gradient_end%>;
-			--dark-primary: <%=dark_primary%>;
-			--dark-gradient-start: <%=dark_gradient_start%>;
-			--dark-gradient-end: <%=dark_gradient_end%>;
-				--bar-bg: <%=primary%>;
-			--blur-radius:<%=blur_radius%>px;
-			--blur-opacity:<%=blur_opacity%>;
-			--blur-radius-dark:<%=blur_radius_dark%>px;
-			--blur-opacity-dark:<%=blur_opacity_dark%>;
-			--background-color: <%=background_color%>;
-		}
-		<% end -%>
+                        <% if fs.access('/etc/config/argon') then %>
+                        :root {
+                                --primary: <%=primary%>;
+                                --gradient-start: <%=gradient_start%>;
+                                --gradient-end: <%=gradient_end%>;
+                                --dark-primary: <%=dark_primary%>;
+                                --dark-gradient-start: <%=dark_gradient_start%>;
+                                --dark-gradient-end: <%=dark_gradient_end%>;
+                                --bar-bg: <%=primary%>;
+                                --blur-radius:<%=blur_radius%>px;
+                                --blur-opacity:<%=blur_opacity%>;
+                                --blur-radius-dark:<%=blur_radius_dark%>px;
+                                --blur-opacity-dark:<%=blur_opacity_dark%>;
+                                --background-color: <%=background_color%>;
+                        }
+                        <% end -%>
 		<% elseif mode == 'dark' then %>
 			<%=dark_css%>
-		<% if fs.access('/etc/config/argon') then %>
-		:root {
-			--primary: <%=primary%>;
-			--gradient-start: <%=gradient_start%>;
-			--gradient-end: <%=gradient_end%>;
-			--dark-primary: <%=dark_primary%>;
-			--dark-gradient-start: <%=dark_gradient_start%>;
-			--dark-gradient-end: <%=dark_gradient_end%>;
-				--bar-bg: <%=primary%>;
-			--blur-radius:<%=blur_radius%>px;
-			--blur-opacity:<%=blur_opacity%>;
-			--blur-radius-dark:<%=blur_radius_dark%>px;
-			--blur-opacity-dark:<%=blur_opacity_dark%>;
-			--background-color: <%=background_color%>;
-		}
+                        <% if fs.access('/etc/config/argon') then %>
+                        :root {
+                                --primary: <%=primary%>;
+                                --gradient-start: <%=gradient_start%>;
+                                --gradient-end: <%=gradient_end%>;
+                                --dark-primary: <%=dark_primary%>;
+                                --dark-gradient-start: <%=dark_gradient_start%>;
+                                --dark-gradient-end: <%=dark_gradient_end%>;
+                                --bar-bg: <%=primary%>;
+                                --blur-radius:<%=blur_radius%>px;
+                                --blur-opacity:<%=blur_opacity%>;
+                                --blur-radius-dark:<%=blur_radius_dark%>px;
+                                --blur-opacity-dark:<%=blur_opacity_dark%>;
+                                --background-color: <%=background_color%>;
+                        }	
+                        <% end -%>
+           
 		<% end -%>
+	</style><style title="text/css">
+		<% if mode == 'custom' then %>
+			@media (prefers-color-scheme: dark) {
+				<%=custom_css%>
+			}
+                        <% if fs.access('/etc/config/argon') then %>
+                        :root {
+                                --primary: <%=primary%>;
+                                --gradient-start: <%=gradient_start%>;
+                                --gradient-end: <%=gradient_end%>;
+                                --dark-primary: <%=dark_primary%>;
+                                --dark-gradient-start: <%=dark_gradient_start%>;
+                                --dark-gradient-end: <%=dark_gradient_end%>;
+                                --bar-bg: <%=primary%>;
+                                --blur-radius:<%=blur_radius%>px;
+                                --blur-opacity:<%=blur_opacity%>;
+                                --blur-radius-dark:<%=blur_radius_dark%>px;
+                                --blur-opacity-dark:<%=blur_opacity_dark%>;
+                                --background-color: <%=background_color%>;
+                        }
+                        <% end -%>
+		
+               <% elseif mode == 'custom' then %>
+			<%=custom_css%>
+                        <% if fs.access('/etc/config/argon') then %>
+                        :root {
+                                --primary: <%=primary%>;
+                                --gradient-start: <%=gradient_start%>;
+                                --gradient-end: <%=gradient_end%>;
+                                --dark-primary: <%=dark_primary%>;
+                                --dark-gradient-start: <%=dark_gradient_start%>;
+                                --dark-gradient-end: <%=dark_gradient_end%>;
+                                --bar-bg: <%=primary%>;
+                                --blur-radius:<%=blur_radius%>px;
+                                --blur-opacity:<%=blur_opacity%>;
+                                --blur-radius-dark:<%=blur_radius_dark%>px;
+                                --blur-opacity-dark:<%=blur_opacity_dark%>;
+                                --background-color: <%=background_color%>;
+                        }
+                        <% end -%>
 		<% end -%>
 	</style>
 	<link rel="shortcut icon" href="<%=media%>/favicon.ico">

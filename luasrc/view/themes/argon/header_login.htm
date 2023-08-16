@@ -39,6 +39,7 @@
 	-- Custom settings
 	local mode = 'normal'
 	local dark_css = fs.readfile('/www/luci-static/argon/css/dark.css')
+	local custom_css = fs.readfile('/www/luci-static/argon/css/custom.css')
 	local bar_color = '#5e72e4'
 	local primary, gradient_start, gradient_end, dark_primary, dark_gradient_start, dark_gradient_end, blur_radius, blur_radius_dark, blur_opacity, color_backgroud
 	if fs.access('/etc/config/argon') then
@@ -96,6 +97,22 @@
 			}
 		<% elseif mode == 'dark' then %>
 			<%=dark_css%>
+		<% end -%>
+		<% if fs.access('/etc/config/argon') then %>
+		:root {
+			--primary: <%=primary%>;
+			--gradient-start: <%=gradient_start%>;
+			--gradient-end: <%=gradient_end%>;
+			--dark-primary: <%=dark_primary%>;
+			--dark-gradient-start: <%=dark_gradient_start%>;
+			--dark-gradient-end: <%=dark_gradient_end%>;
+			--blur-radius:<%=blur_radius%>px;
+			--blur-opacity:<%=blur_opacity%>;
+			--blur-radius-dark:<%=blur_radius_dark%>px;
+			--blur-opacity-dark:<%=blur_opacity_dark%>;
+		}
+<% elseif mode == 'custom' then %>
+			<%=custom_css%>
 		<% end -%>
 		<% if fs.access('/etc/config/argon') then %>
 		:root {
