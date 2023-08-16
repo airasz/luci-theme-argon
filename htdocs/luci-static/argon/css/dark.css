@@ -708,8 +708,21 @@ div[style="width:100%;height:300px;border:1px solid #000;background:#fff"] {
 }
 
 [data-page="admin-system-flash"] .modal .alert-message {
-        background-color: transparent !important;
-        color: #000000
+        /* background-color: transparent !important;
+        color: #000000 */
+
+        backdrop-filter: blur(10px);
+        position: relative;
+        background-color: #fefefeb2;
+        color: #000000 margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        /* width: 80%; */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
 }
 
 [data-page="admin-system-flash"] .modal .danger {
@@ -903,6 +916,29 @@ background: -webkit-linear-gradient(0deg, hsla(224, 86%, 57%, 1) 0%, hsla(183, 1
         -webkit-animation-duration: 0.4s;
         animation-name: animatetop;
         animation-duration: 0.4s
+}
+
+.modal {
+
+        backdrop-filter: blur(10px);
+        position: relative;
+        background-color: #fefefeb2;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+}
+
+#modal_overlay {
+        /* right: 0;
+        left: 0;
+        opacity: 1 */
+        position: fixed;
+        backdrop-filter: blur(6px);
 }
 
 /* Add Animation */
